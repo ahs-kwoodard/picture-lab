@@ -48,7 +48,7 @@ public class PictureTester
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
+    Picture caterpillar = new Picture("lego-mike.jpg");
     caterpillar.explore();
     caterpillar.mirrorVertical();
     caterpillar.explore();
@@ -61,6 +61,30 @@ public class PictureTester
     temple.explore();
     temple.mirrorTemple();
     temple.explore();
+  }
+  
+  /** Method to test mirrorVerticalRightToLeft */
+  public static void testMirrorVerticalRightToLeft() {
+    Picture legoMike = new Picture("lego-mike.jpg");
+    legoMike.explore();
+    legoMike.mirrorVerticalRightToLeft();
+    legoMike.explore();
+  }
+  
+  /** Method to test mirrorHorizontal */
+  public static void testMirrorHorizontal() {
+    Picture legoMike = new Picture("lego-mike.jpg");
+    legoMike.explore();
+    legoMike.mirrorHorizontal();
+    legoMike.explore();
+  }
+  
+  /** Method to test mirrorHorizontal */
+  public static void testMirrorHorizontalBotToTop() {
+    Picture legoMike = new Picture("lego-mike.jpg");
+    legoMike.explore();
+    legoMike.mirrorHorizontalBotToTop();
+    legoMike.explore();
   }
   
   /** Method to test the collage method */
@@ -92,8 +116,11 @@ public class PictureTester
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    testFixUnderwater();
+    //testFixUnderwater();
     //testMirrorVertical();
+    //testMirrorVerticalRightToLeft();
+    //testMirrorHorizontal();
+      testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
