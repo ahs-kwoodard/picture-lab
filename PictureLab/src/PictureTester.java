@@ -104,11 +104,35 @@ public class PictureTester
     snowman.explore();
   }
   
+  /** Method to test mirrorArms */
+  public static void testMirrorGull()
+  {
+    Picture seagull = new Picture("seagull.jpg");
+    seagull.explore();
+    seagull.mirrorGull();
+    seagull.explore();
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
     canvas.createCollage();
+    canvas.explore();
+  }
+  
+  public static void testCopy() {
+    Picture legomike = new Picture("lego-mike.jpg");
+    legomike.explore();
+    legomike.secondCopy(legomike, 0, 300, 259, 545);
+    legomike.explore();
+  }
+  
+  /** Method to test the myCollage method */
+  public static void testMyCollage()
+  {
+    Picture canvas = new Picture("640x480.jpg");
+    canvas.myCollage();
     canvas.explore();
   }
   
@@ -140,12 +164,13 @@ public class PictureTester
     //testMirrorHorizontalBotToTop();
     //testMirrorDiagonal();
     //testMirrorTemple();
-    testMirrorArms();
+    //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    //testEdgeDetection();
+    //testMyCollage();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
