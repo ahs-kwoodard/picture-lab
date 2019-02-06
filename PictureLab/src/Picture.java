@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -113,9 +112,9 @@ public class Picture extends SimplePicture {
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
-                pixelObj.setRed(pixelObj.getRed() - 255);
-                pixelObj.setGreen(pixelObj.getGreen() - 255);
-                pixelObj.setBlue(pixelObj.getBlue() - 255);
+                pixelObj.setRed(255 - pixelObj.getRed());
+                pixelObj.setGreen(255 - pixelObj.getGreen());
+                pixelObj.setBlue(255 - pixelObj.getBlue());
             }
         }
     }
@@ -385,8 +384,11 @@ public class Picture extends SimplePicture {
      */
     public void myCollage() {
         Picture legomike = new Picture("lego-mikers.jpg");
+        legomike.negate();
         Picture kailani = new Picture("kailani.jpg");
+        kailani.keepOnlyBlue();
         Picture denver = new Picture("denver.jpg");
+        denver.zeroBlue();
         this.copy(legomike, 0, 0);
         this.copy(kailani, 160, 0);//
         this.copy(denver, 320, 0);
@@ -404,8 +406,8 @@ public class Picture extends SimplePicture {
         Pixel rightPixel = null;
         Pixel topPixel = null;
         Pixel bottomPixel = null;
-
         Pixel[][] pixels = this.getPixels2D();
+        
         for (int row = 0; row < pixels.length - 1; row++) {
             for (int col = 0;
                     col < pixels[0].length - 1; col++) {
@@ -422,6 +424,40 @@ public class Picture extends SimplePicture {
             }
         }
     }
+    
+    /**
+     * Refined method to show larger changes in color
+     *
+     * @param edgeDist the distance for finding edges
+     */
+    public void edgeDetectionTwoElectricBoogaloo(int edgeDist) {
+        Pixel pixel = null;
+        Pixel rightPixel = null;
+        Pixel rightPixel2 = null;
+        Pixel bottomPixel = null;
+        Pixel bottomPixel2 = null;
+        Pixel[][] pixels = this.getPixels2D();
+        
+        for (int row = 0; row < pixels.length - 2; row++) {
+            for (int col = 0;
+                    col < pixels[0].length - 2; col++) {
+                pixel = pixels[row][col];
+                rightPixel = pixels[row][col + 1];
+                rightPixel2 = pixels[row][col + 2];
+                bottomPixel = pixels[row + 1][col];
+                bottomPixel2 = pixels[row + 2][col];
+                if (pixel.colorDistance(rightPixel.getColor()) > edgeDist
+                        || pixel.colorDistance(bottomPixel.getColor()) > edgeDist
+                        || pixel.colorDistance(rightPixel2.getColor()) > edgeDist
+                        || pixel.colorDistance(bottomPixel2.getColor()) > edgeDist) {
+                        pixel.setColor(Color.WHITE);
+                } else {
+                    pixel.setColor(Color.BLACK);
+                }
+            }
+        }
+        
+    }
 
     /* Main method for testing - each class in Java can have a main 
    * method 
@@ -433,4 +469,4 @@ public class Picture extends SimplePicture {
         beach.explore();
     }
 
-} // this } is the end of class Picture, put all new methods before this
+}
